@@ -10,13 +10,21 @@
     <link href="{% static 'financiera/bootstrap/bootstrap.min.css' %}" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous"></head>
 <body>
     <nav class="navbar fixed-top navbar-dark bg-dark">
-        <div class="container-fluid">
+        <div class="container-md">
           <a class="navbar-brand" href="/">Inicio</a>
-          <a class="nav-link text-warning" href="{% url 'logout_view' %}">Salir de {{ request.user.cliente }}</a>
+          {% if request.user.is_superuser%}
+          <a class="nav-link text-primary" href="{% url 'financiera:deposito' %}">Deposito</a>
+          <a class="nav-link text-primary" href="{% url 'financiera:retiro' %}">Retiro</a>
+          {% else %} 
+          {% endif %}
+          <a class="nav-link text-primary">{{ request.user.cliente }} Saldo: {{request.user.cliente.cuenta_bancaria}}</a>
+          <a class="nav-link text-warning" href="{% url 'logout_view' %}"> Cerrar Sesion</a> 
         </div>
-      </nav>
+    </nav>
       <div class="container mt-5">
-        {% block container %}{% endblock %}
+        {% block container %}
+         
+        {% endblock %}
     </div>
 </body>
 </html>

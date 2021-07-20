@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.db.models.deletion import CASCADE
+from django.db.models.fields.related import ForeignKey
 
 # Create your models here.
 class Cliente(models.Model):
@@ -26,4 +28,9 @@ class Cuenta_Bancaria(models.Model):
 
     def __str__(self):
         return f'{self.saldo}'
-    
+
+class Depositar(models.Model):
+
+    monto = models.DecimalField(max_digits=12, decimal_places=4)
+    fecha = models.DateTimeField(auto_now=True)
+    cuenta = models.ForeignKey(Cuenta_Bancaria, on_delete=models.CASCADE)

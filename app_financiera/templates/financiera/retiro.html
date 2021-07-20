@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Retiro
+{% endblock %}
+
+{% block container%}
+    <h1>Realizar un Retiro</h1>
+    
+    <form action="{% url 'financiera:retiro %}" method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+            
+            <label for="exampleFormControlInput1" class="form-label">Monto a retirar</label>
+            <input name="monto" type="text" class="form-control" id="exampleFormControlInput1" placeholder="1000" required >
+        </div>
+        <div class="col-auto">
+            <input type="submit" class="btn btn-success" value="Confirmar Deposito"/>
+        </div>
+    </form>
+    
+{% endblock %}

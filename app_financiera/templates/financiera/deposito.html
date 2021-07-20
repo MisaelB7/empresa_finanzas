@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Deposito
+{% endblock %}
+
+{% block container%}
+    <h1>Realizar un Deposito</h1>
+    
+    <form  action="{% url 'financiera:deposito' %}" method="post">
+        {% csrf_token %}
+        <div class="mb-1">
+            <label  for="exampleFormControlInput1" class="form-label">Monto a depositar:</label>
+            <input name="monto" type="text" class="form-control" id="exampleFormControlInput1" placeholder="1000" required >
+        </div>
+        <div class="col-auto">
+            <input type="submit" class="btn btn-success" value="Confirmar"/>
+        </div>
+    </form>
+    
+{% endblock %}
